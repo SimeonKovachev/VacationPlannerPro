@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace VacationPlannerPro.Web.Data
+namespace VacationPlannerPro.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

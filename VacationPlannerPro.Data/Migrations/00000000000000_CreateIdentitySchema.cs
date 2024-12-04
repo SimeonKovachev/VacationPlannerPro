@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
-namespace VacationPlannerPro.Web.Data.Migrations
+namespace VacationPlannerPro.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

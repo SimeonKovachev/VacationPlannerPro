@@ -15,4 +15,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VacationPlannerPro.Business\VacationPlannerPro.Business.csproj" />
+    <ProjectReference Include="..\VacationPlannerPro.Data\VacationPlannerPro.Data.csproj" />
+  </ItemGroup>
+
 </Project>
