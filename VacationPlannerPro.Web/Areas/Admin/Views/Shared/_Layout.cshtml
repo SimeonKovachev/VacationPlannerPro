@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Admin Panel</title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    <style>
+        .hover-effect:hover {
+            opacity: 0.7;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex flex-column">
+        <!-- Wrapper for sidebar and content -->
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar -->
+            <nav id="sidebar-wrapper" class="bg-white border-end">
+                <div class="sidebar-heading border-bottom bg-light text-center py-3">
+                    <a class="fs-5 text-decoration-none text-reset" href="@Url.Action("Index", "Dashboard", new { area = "Admin" })">Vacation Dashboard</a>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Projects", new { area = "Admin" })">
+                        <i class="fa-solid fa-diagram-project"></i> Projects
+                    </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Vacations", new { area = "Admin" })">
+                        <i class="fa-solid fa-calendar-days"></i> Vacations
+                    </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Teams", new { area = "Admin" })">
+                        <i class="fa-solid fa-people-group"></i> Teams
+                    </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Leaders", new { area = "Admin" })">
+                        <i class="fa-solid fa-user-tie"></i> Leaders
+                    </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Workers", new { area = "Admin" })">
+                        <i class="fa-solid fa-people-carry-box"></i> Workers
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Page Content Wrapper -->
+            <div id="page-content-wrapper">
+                <!-- Top Navigation -->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home", new { area = "" })">Home</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-user"></i> Account
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Main Content -->
+                <div class="container-fluid px-4">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">&copy; @DateTime.Now.Year - Vacation Manager</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Sidebar toggle functionality
+        document.getElementById("sidebarToggle").addEventListener("click", function () {
+            document.getElementById("wrapper").classList.toggle("toggled");
+        });
+    </script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @* <script src="~/js/admin.js" asp-append-version="true"></script> *@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

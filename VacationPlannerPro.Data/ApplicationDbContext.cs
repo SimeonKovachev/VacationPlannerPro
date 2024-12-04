@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VacationPlannerPro.Data.Entities;
+using Task = VacationPlannerPro.Data.Entities.Task;
 
 namespace VacationPlannerPro.Data
 {
@@ -11,6 +12,7 @@ namespace VacationPlannerPro.Data
         public DbSet<Vacation> Vacations { get; set; }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<Leader> Leaders { get; set; }
+        public DbSet<Task> Tasks { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

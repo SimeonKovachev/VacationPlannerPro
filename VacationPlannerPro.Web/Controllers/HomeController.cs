@@ -23,6 +23,12 @@ namespace VacationPlannerPro.Web.Controllers
             return View();
         }
 
+        [Route("admin")]
+        public IActionResult Admin()
+        {
+            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
