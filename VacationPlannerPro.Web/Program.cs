@@ -52,6 +52,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.UseExceptionHandler("/Error/Handle");
+app.UseStatusCodePagesWithReExecute("/Error/StatusCode", "?code={0}");
+
 app.MapRazorPages();
 
 app.Run();
