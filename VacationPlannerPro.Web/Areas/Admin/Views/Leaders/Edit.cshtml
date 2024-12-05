@@ -52,7 +52,6 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            // Fetch professions via AJAX
             $.ajax({
                 url: '@Url.Action("GetAllProfessions", "Professions", new { area = "Admin" })',
                 type: 'GET',
