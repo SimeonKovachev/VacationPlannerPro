@@ -2,6 +2,7 @@
 using VacationPlannerPro.Business.DTOs;
 using VacationPlannerPro.Business.DTOs.LeaderDTOs;
 using VacationPlannerPro.Business.DTOs.ProjectDTOs;
+using VacationPlannerPro.Business.DTOs.VacationDTOs;
 using VacationPlannerPro.Data.Entities;
 
 namespace VacationPlannerPro.Business.Mapping
@@ -17,6 +18,11 @@ namespace VacationPlannerPro.Business.Mapping
             CreateMap<Project, ProjectDTO>().ReverseMap();
             CreateMap<CreateProjectDTO, Project>();
             CreateMap<UpdateProjectDTO, Project>();
+
+            CreateMap<Vacation, VacationDTO>()
+                .ForMember(dest => dest.WorkerName, opt => opt.MapFrom(src => src.Worker.FullName));
+            CreateMap<CreateVacationDTO, Vacation>();
+            CreateMap<UpdateVacationDTO, Vacation>();
 
             CreateMap<Profession, ProfessionDTO>();
         }

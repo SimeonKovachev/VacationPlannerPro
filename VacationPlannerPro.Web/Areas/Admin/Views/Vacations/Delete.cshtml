@@ -1,0 +1,51 @@
+﻿@using VacationPlannerPro.Business.DTOs.VacationDTOs
+@model VacationDTO
+
+@{
+    ViewBag.Title = "Delete Vacation";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0 rounded-lg mt-3">
+            <div class="card-header">
+                <h3 class="text-center font-weight-light my-4">Delete Vacation</h3>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Delete", "Vacations", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="alert alert-danger">
+                        Are you sure you want to delete this vacation?
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-4">Start Date</dt>
+                        <dd class="col-sm-8">@Model.StartDate.ToShortDateString()</dd>
+
+                        <dt class="col-sm-4">End Date</dt>
+                        <dd class="col-sm-8">@Model.EndDate.ToShortDateString()</dd>
+
+                        <dt class="col-sm-4">Type</dt>
+                        <dd class="col-sm-8">@Model.TypeName</dd>
+
+                        <dt class="col-sm-4">Worker</dt>
+                        <dd class="col-sm-8">@Model.WorkerName</dd>
+                    </dl>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="@Url.Action("Index", "Vacations", new { area = "Admin" })" class="btn btn-outline-primary">
+                            <i class="fa-solid fa-chevron-left"></i> Back to List
+                        </a>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,7 @@ namespace VacationPlannerPro.Business.Config
             services.AddScoped<ILeaderService, LeaderService>();
             services.AddScoped<IProfessionService, ProfessionService>();
             services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<IVacationService, VacationService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper(typeof(MappingProfile));

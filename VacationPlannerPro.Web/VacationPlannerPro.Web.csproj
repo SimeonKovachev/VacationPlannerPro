@@ -25,7 +25,6 @@
     <Folder Include="Areas\Admin\ViewModels\" />
     <Folder Include="Areas\Admin\Views\Tasks\" />
     <Folder Include="Areas\Admin\Views\Workers\" />
-    <Folder Include="Areas\Admin\Views\Vacations\" />
     <Folder Include="Areas\Admin\Views\Teams\" />
   </ItemGroup>
 

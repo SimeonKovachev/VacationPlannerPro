@@ -1,0 +1,46 @@
+﻿@using VacationPlannerPro.Business.DTOs.VacationDTOs
+@model IEnumerable<VacationDTO>
+
+@{
+    ViewBag.Title = "Vacations Management";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center mt-3">Vacations Management</h2>
+
+<div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="fas fa-table me-1"></i> Vacation List</h5>
+        <a href="@Url.Action("Create", "Vacations", new { area = "Admin" })" class="btn btn-success">
+            <i class="fa-solid fa-plus"></i> Create New
+        </a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="table-primary">
+                <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Vacation Type</th>
+                    <th>Worker</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var vacation in Model)
+                {
+                    <tr>
+                        <td>@vacation.StartDate.ToShortDateString()</td>
+                        <td>@vacation.EndDate.ToShortDateString()</td>
+                        <td>@vacation.TypeName</td>
+                        <td>@vacation.WorkerName</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Vacations", new { id = vacation.Id, area = "Admin" })" class="btn btn-outline-warning btn-sm">Edit</a>
+                            <a href="@Url.Action("Delete", "Vacations", new { id = vacation.Id, area = "Admin" })" class="btn btn-outline-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
