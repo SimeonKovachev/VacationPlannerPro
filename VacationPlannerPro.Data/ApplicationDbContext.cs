@@ -13,6 +13,7 @@ namespace VacationPlannerPro.Data
         public DbSet<Worker> Workers { get; set; }
         public DbSet<Leader> Leaders { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<Profession> Professions { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

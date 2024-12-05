@@ -1,0 +1,122 @@
+﻿using Microsoft.EntityFrameworkCore;
+using VacationPlannerPro.Data.Entities;
+using Task = System.Threading.Tasks.Task;
+
+namespace VacationPlannerPro.Data.Seeders
+{
+    public static class ProfessionSeeder
+    {
+        public static async Task SeedProfessionsAsync(ApplicationDbContext context)
+        {
+            if (!await context.Professions.AnyAsync())
+            {
+                var professions = new List<Profession>
+                {
+                    new Profession { Name = "Software Engineer" },
+                    new Profession { Name = "Data Scientist" },
+                    new Profession { Name = "Mechanical Engineer" },
+                    new Profession { Name = "Civil Engineer" },
+                    new Profession { Name = "Electrical Engineer" },
+                    new Profession { Name = "Doctor" },
+                    new Profession { Name = "Nurse" },
+                    new Profession { Name = "Pharmacist" },
+                    new Profession { Name = "Teacher" },
+                    new Profession { Name = "Lawyer" },
+                    new Profession { Name = "Accountant" },
+                    new Profession { Name = "Architect" },
+                    new Profession { Name = "Dentist" },
+                    new Profession { Name = "Veterinarian" },
+                    new Profession { Name = "Software Tester" },
+                    new Profession { Name = "Graphic Designer" },
+                    new Profession { Name = "Interior Designer" },
+                    new Profession { Name = "Social Worker" },
+                    new Profession { Name = "Psychologist" },
+                    new Profession { Name = "Chef" },
+                    new Profession { Name = "Pilot" },
+                    new Profession { Name = "Flight Attendant" },
+                    new Profession { Name = "Journalist" },
+                    new Profession { Name = "Editor" },
+                    new Profession { Name = "Content Writer" },
+                    new Profession { Name = "SEO Specialist" },
+                    new Profession { Name = "Digital Marketer" },
+                    new Profession { Name = "Photographer" },
+                    new Profession { Name = "Video Editor" },
+                    new Profession { Name = "Data Analyst" },
+                    new Profession { Name = "Data Engineer" },
+                    new Profession { Name = "Machine Learning Engineer" },
+                    new Profession { Name = "AI Specialist" },
+                    new Profession { Name = "Blockchain Developer" },
+                    new Profession { Name = "Cybersecurity Specialist" },
+                    new Profession { Name = "Network Engineer" },
+                    new Profession { Name = "Database Administrator" },
+                    new Profession { Name = "Cloud Engineer" },
+                    new Profession { Name = "Mobile App Developer" },
+                    new Profession { Name = "Game Developer" },
+                    new Profession { Name = "E-commerce Specialist" },
+                    new Profession { Name = "HR Specialist" },
+                    new Profession { Name = "Recruiter" },
+                    new Profession { Name = "Fitness Trainer" },
+                    new Profession { Name = "Physiotherapist" },
+                    new Profession { Name = "Plumber" },
+                    new Profession { Name = "Electrician" },
+                    new Profession { Name = "Carpenter" },
+                    new Profession { Name = "Mechanic" },
+                    new Profession { Name = "Taxi Driver" },
+                    new Profession { Name = "Truck Driver" },
+                    new Profession { Name = "Construction Worker" },
+                    new Profession { Name = "Barber" },
+                    new Profession { Name = "Hairdresser" },
+                    new Profession { Name = "Makeup Artist" },
+                    new Profession { Name = "Painter" },
+                    new Profession { Name = "Sculptor" },
+                    new Profession { Name = "Musician" },
+                    new Profession { Name = "Singer" },
+                    new Profession { Name = "Actor" },
+                    new Profession { Name = "Director" },
+                    new Profession { Name = "Producer" },
+                    new Profession { Name = "Scriptwriter" },
+                    new Profession { Name = "Animator" },
+                    new Profession { Name = "Fashion Designer" },
+                    new Profession { Name = "Model" },
+                    new Profession { Name = "Event Planner" },
+                    new Profession { Name = "Wedding Planner" },
+                    new Profession { Name = "Florist" },
+                    new Profession { Name = "Travel Agent" },
+                    new Profession { Name = "Tour Guide" },
+                    new Profession { Name = "Librarian" },
+                    new Profession { Name = "Research Scientist" },
+                    new Profession { Name = "Astronomer" },
+                    new Profession { Name = "Biologist" },
+                    new Profession { Name = "Chemist" },
+                    new Profession { Name = "Physicist" },
+                    new Profession { Name = "Geologist" },
+                    new Profession { Name = "Environmental Scientist" },
+                    new Profession { Name = "Meteorologist" },
+                    new Profession { Name = "Economist" },
+                    new Profession { Name = "Statistician" },
+                    new Profession { Name = "Financial Analyst" },
+                    new Profession { Name = "Investment Banker" },
+                    new Profession { Name = "Stockbroker" },
+                    new Profession { Name = "Actuary" },
+                    new Profession { Name = "Supply Chain Manager" },
+                    new Profession { Name = "Logistics Coordinator" },
+                    new Profession { Name = "Retail Manager" },
+                    new Profession { Name = "Sales Executive" },
+                    new Profession { Name = "Marketing Manager" },
+                    new Profession { Name = "PR Specialist" },
+                    new Profession { Name = "Real Estate Agent" },
+                    new Profession { Name = "Property Manager" },
+                    new Profession { Name = "Insurance Agent" },
+                    new Profession { Name = "Customer Support Specialist" },
+                    new Profession { Name = "Tech Support Specialist" },
+                    new Profession { Name = "Help Desk Technician" },
+                    new Profession { Name = "Compliance Officer" },
+                    new Profession { Name = "Auditor" }
+                };
+
+                await context.Professions.AddRangeAsync(professions);
+                await context.SaveChangesAsync();
+            }
+        }
+    }
+}

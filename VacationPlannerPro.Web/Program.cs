@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using VacationPlannerPro.Data;
 using VacationPlannerPro.Business.Config;
+using VacationPlannerPro.Data.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
@@ -20,6 +21,13 @@ builder.Services.AddServiceLayer(builder.Configuration);
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+    await ProfessionSeeder.SeedProfessionsAsync(context);
+}
 
 if (app.Environment.IsDevelopment())
 {

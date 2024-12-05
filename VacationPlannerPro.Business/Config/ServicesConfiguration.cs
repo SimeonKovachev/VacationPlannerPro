@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VacationPlannerPro.Business.Interfaces;
+using VacationPlannerPro.Business.Mapping;
+using VacationPlannerPro.Business.Services;
 using VacationPlannerPro.Data.Interfaces;
 using VacationPlannerPro.Data.Repositories;
 
@@ -9,8 +12,11 @@ namespace VacationPlannerPro.Business.Config
     {
         public static void AddServiceLayer(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<ILeaderService, LeaderService>();
+            services.AddScoped<IProfessionService, ProfessionService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddAutoMapper(typeof(MappingProfile));
         }
     }
 }

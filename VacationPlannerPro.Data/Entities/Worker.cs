@@ -15,8 +15,9 @@ namespace VacationPlannerPro.Data.Entities
         public int Age { get; set; }
 
         [Required]
-        [StringLength(50, ErrorMessage = "Profession cannot exceed 50 characters.")]
-        public string Profession { get; set; }
+        public int ProfessionId { get; set; }
+
+        public virtual Profession Profession { get; set; }
 
         // Navigation Properties
         public virtual ICollection<Team> Teams { get; set; } = new HashSet<Team>();
