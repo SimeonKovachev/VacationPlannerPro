@@ -9,7 +9,9 @@
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <div class="card shadow-sm border-0 rounded-lg mt-3">
-            <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Worker</h3></div>
+            <div class="card-header">
+                <h3 class="text-center font-weight-light my-4">Create Worker</h3>
+            </div>
             <div class="card-body">
                 @using (Html.BeginForm("Create", "Workers", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
                 {
@@ -57,7 +59,7 @@
                     let dropdown = $('#ProfessionDropdown');
                     dropdown.empty();
                     dropdown.append('<option value="" disabled selected>Select a Profession</option>');
-                    data.forEach(profession => {
+                    data.forEach(function (profession) {
                         dropdown.append(`<option value="${profession.id}">${profession.name}</option>`);
                     });
                 },
