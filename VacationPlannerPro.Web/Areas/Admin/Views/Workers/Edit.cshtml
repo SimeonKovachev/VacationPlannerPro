@@ -1,0 +1,71 @@
+﻿@using VacationPlannerPro.Business.DTOs.WorkerDTOs
+@model UpdateWorkerDTO
+
+@{
+    ViewBag.Title = "Edit Worker";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0 rounded-lg mt-3">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit Worker</h3></div>
+            <div class="card-body">
+                @using (Html.BeginForm("Edit", "Workers", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ProfessionDropdown" class="form-label">Profession</label>
+                        <select id="ProfessionDropdown" name="ProfessionId" class="form-select">
+                            <option value="" disabled>Select a Profession</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.ProfessionId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a class="btn btn-outline-primary" href="@Url.Action("Index", "Workers", new { area = "Admin" })">
+                            <i class="fa-solid fa-chevron-left"></i> Back to List
+                        </a>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("GetAllProfessions", "Professions", new { area = "Admin" })',
+                type: 'GET',
+                success: function (data) {
+                    let dropdown = $('#ProfessionDropdown');
+                    dropdown.empty();
+                    dropdown.append('<option value="" disabled>Select a Profession</option>');
+                    data.forEach(profession => {
+                        dropdown.append(`<option value="${profession.id}" ${(profession.id === '@Model.ProfessionId') ? 'selected' : ''}>${profession.name}</option>`);
+                    });
+                },
+                error: function () {
+                    console.error("Error fetching professions.");
+                }
+            });
+        });
+    </script>
+}
