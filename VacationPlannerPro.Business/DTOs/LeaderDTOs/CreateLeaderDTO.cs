@@ -11,6 +11,6 @@ namespace VacationPlannerPro.Business.DTOs.LeaderDTOs
         public int Age { get; set; }
 
         [Required]
-        public int ProfessionId { get; set; }
+        public Guid ProfessionId { get; set; }
     }
 }

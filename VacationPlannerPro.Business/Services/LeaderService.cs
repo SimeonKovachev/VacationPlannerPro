@@ -20,13 +20,13 @@ namespace VacationPlannerPro.Business.Services
 
         public async Task<IEnumerable<LeaderDTO>> GetAllAsync()
         {
-            var leaders = await _unitOfWork.Leaders.GetAllAsync();
+            var leaders = await _unitOfWork.Leaders.GetLeadersWithProfessionsAsync();
             return _mapper.Map<IEnumerable<LeaderDTO>>(leaders);
         }
 
         public async Task<LeaderDTO?> GetByIdAsync(Guid id)
         {
-            var leader = await _unitOfWork.Leaders.GetByIdAsync(id);
+            var leader = await _unitOfWork.Leaders.GetLeaderWithProfessionByIdAsync(id);
             return leader == null ? null : _mapper.Map<LeaderDTO>(leader);
         }
 

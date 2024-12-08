@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VacationPlannerPro.Business.DTOs;
 using VacationPlannerPro.Business.Interfaces;
 
 namespace VacationPlannerPro.Web.Areas.Admin.Controllers
@@ -11,6 +12,69 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
         public ProfessionsController(IProfessionService professionService)
         {
             _professionService = professionService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var professions = await _professionService.GetAllAsync();
+            return View(professions);
+        }
+
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var profession = await _professionService.GetByIdAsync(id);
+            if (profession == null) return NotFound();
+
+            return View(profession);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(ProfessionDTO dto)
+        {
+            if (!ModelState.IsValid) return View(dto);
+
+            await _professionService.CreateAsync(dto);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var profession = await _professionService.GetByIdAsync(id);
+            if (profession == null) return NotFound();
+
+            return View(new ProfessionDTO { Id = profession.Id, Name = profession.Name });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ProfessionDTO dto)
+        {
+            if (!ModelState.IsValid) return View(dto);
+
+            await _professionService.UpdateAsync(dto);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var profession = await _professionService.GetByIdAsync(id);
+            if (profession == null) return NotFound();
+
+            return View(profession);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        {
+            await _professionService.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]

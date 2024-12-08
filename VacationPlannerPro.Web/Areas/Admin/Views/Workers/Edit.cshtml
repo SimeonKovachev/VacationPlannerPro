@@ -1,5 +1,4 @@
-﻿@using VacationPlannerPro.Business.DTOs.WorkerDTOs
-@model UpdateWorkerDTO
+﻿@model VacationPlannerPro.Business.DTOs.WorkerDTOs.UpdateWorkerDTO
 
 @{
     ViewBag.Title = "Edit Worker";
@@ -61,11 +60,13 @@
                     dropdown.empty();
                     dropdown.append('<option value="" disabled>Select a Profession</option>');
                     data.forEach(function (profession) {
-                        dropdown.append(`<option value="${profession.id}" ${(profession.id === '@Model.ProfessionId') ? 'selected' : ''}>${profession.name}</option>`);
+                        dropdown.append(`<option value="${profession.id}">${profession.name}</option>`);
                     });
+
+                    dropdown.val('@Model.ProfessionId');
                 },
-                error: function () {
-                    console.error("Error fetching professions.");
+                error: function (error) {
+                    console.error("Error fetching professions:", error);
                 }
             });
         });

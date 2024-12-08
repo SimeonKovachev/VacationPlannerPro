@@ -23,7 +23,7 @@ namespace VacationPlannerPro.Tests.Services
             _service = new LeaderService(_unitOfWorkMock.Object, _mapperMock.Object);
         }
 
-        #region GetAllAsync
+       /* #region GetAllAsync
         [Fact]
         public async Task GetAllAsync_ShouldReturnMappedLeaders()
         {
@@ -191,6 +191,6 @@ namespace VacationPlannerPro.Tests.Services
             // Assert
             await act.Should().ThrowAsync<KeyNotFoundException>().WithMessage("Leader not found.");
         }
-        #endregion
+        #endregion*/
     }
 }

@@ -8,7 +8,7 @@
 
         public int Age { get; set; }
 
-        public int ProfessionId { get; set; }
+        public Guid ProfessionId { get; set; }
 
         public string ProfessionName { get; set; }
     }

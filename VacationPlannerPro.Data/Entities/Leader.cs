@@ -15,7 +15,7 @@ namespace VacationPlannerPro.Data.Entities
         public int Age { get; set; }
 
         [Required]
-        public int ProfessionId { get; set; }
+        public Guid ProfessionId { get; set; }
 
         public virtual Profession Profession { get; set; }
 

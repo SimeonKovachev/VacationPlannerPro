@@ -12,7 +12,7 @@ using VacationPlannerPro.Data;
 namespace VacationPlannerPro.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241205080628_AddProfessionEntity")]
+    [Migration("20241208210106_AddProfessionEntity")]
     partial class AddProfessionEntity
     {
         /// <inheritdoc />
@@ -256,8 +256,8 @@ namespace VacationPlannerPro.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("ProfessionId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ProfessionId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -268,11 +268,9 @@ namespace VacationPlannerPro.Data.Migrations
 
             modelBuilder.Entity("VacationPlannerPro.Data.Entities.Profession", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -408,8 +406,8 @@ namespace VacationPlannerPro.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("ProfessionId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ProfessionId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

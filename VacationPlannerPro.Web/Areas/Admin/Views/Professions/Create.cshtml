@@ -1,0 +1,35 @@
+﻿@model VacationPlannerPro.Business.DTOs.ProfessionDTO
+
+@{
+    ViewBag.Title = "Create Profession";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0 rounded-lg mt-3">
+            <div class="card-header">
+                <h3 class="text-center font-weight-light my-4">Create Profession</h3>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Create", "Professions", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a class="btn btn-outline-primary" href="@Url.Action("Index", "Professions", new { area = "Admin" })">
+                            <i class="fa-solid fa-chevron-left"></i> Back to List
+                        </a>
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

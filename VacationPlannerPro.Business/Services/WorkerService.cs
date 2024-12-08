@@ -19,14 +19,14 @@ namespace VacationPlannerPro.Business.Services
         }
 
         public async Task<IEnumerable<WorkerDTO>> GetAllAsync()
-        {
-            var workers = await _unitOfWork.Workers.GetAllAsync();
+       {
+            var workers = await _unitOfWork.Workers.GetWorkersWithProfessionsAsync();
             return _mapper.Map<IEnumerable<WorkerDTO>>(workers);
         }
 
         public async Task<WorkerDTO?> GetByIdAsync(Guid id)
         {
-            var worker = await _unitOfWork.Workers.GetByIdAsync(id);
+            var worker = await _unitOfWork.Workers.GetWorkerWithProfessionByIdAsync(id);
             return worker == null ? null : _mapper.Map<WorkerDTO>(worker);
         }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -18,26 +19,25 @@ namespace VacationPlannerPro.Data.Migrations
                 name: "Profession",
                 table: "Leaders");
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<Guid>(
                 name: "ProfessionId",
                 table: "Workers",
-                type: "int",
+                type: "uniqueidentifier",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<Guid>(
                 name: "ProfessionId",
                 table: "Leaders",
-                type: "int",
+                type: "uniqueidentifier",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
             migrationBuilder.CreateTable(
                 name: "Professions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
