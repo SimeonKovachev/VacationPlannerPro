@@ -100,6 +100,12 @@
         document.getElementById("sidebarToggle").addEventListener("click", function () {
             document.getElementById("wrapper").classList.toggle("toggled");
         });
+
+        function clearSearch() {
+            const url = new URL(window.location.href);
+            url.searchParams.delete('searchTerm');
+            window.location.assign(url.toString());
+        }
     </script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

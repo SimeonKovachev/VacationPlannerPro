@@ -58,11 +58,13 @@ namespace VacationPlannerPro.Business.Services
 
         public async Task<PaginatedListDTO<LeaderDTO>> GetLeadersAsync(int pageNumber, int pageSize, string? searchTerm = null)
         {
-            var (leaders, totalCount) = await _unitOfWork.Leaders.GetPaginatedAsync(
-               pageNumber,
-               pageSize,
-               l => string.IsNullOrEmpty(searchTerm) || l.FullName.Contains(searchTerm)
-           );
+            var (leaders, totalCount) = await _unitOfWork.Leaders.GetPaginatedWithIncludeAsync(
+                 pageNumber,
+                 pageSize,
+                 l => string.IsNullOrEmpty(searchTerm) || l.FullName.Contains(searchTerm),
+                 null,
+                 l => l.Profession
+             );
 
             var leaderDtos = _mapper.Map<List<LeaderDTO>>(leaders);
 

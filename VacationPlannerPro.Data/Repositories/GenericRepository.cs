@@ -60,9 +60,19 @@ namespace VacationPlannerPro.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<(IEnumerable<T> data, int totalCount)> GetPaginatedAsync(int pageNumber, int pageSize, Expression<Func<T, bool>>? predicate = null, Expression<Func<T, object>>? orderBy = null)
+        public async Task<(IEnumerable<T> data, int totalCount)> GetPaginatedWithIncludeAsync<TProperty>(
+             int pageNumber,
+             int pageSize,
+             Expression<Func<T, bool>>? predicate = null,
+             Expression<Func<T, object>>? orderBy = null,
+             Expression<Func<T, TProperty>>? includeProperty = null)
         {
             var query = _dbSet.AsQueryable();
+
+            if (includeProperty != null)
+            {
+                query = query.Include(includeProperty);
+            }
 
             if (predicate != null)
             {

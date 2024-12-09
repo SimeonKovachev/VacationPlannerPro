@@ -58,7 +58,7 @@ namespace VacationPlannerPro.Business.Services
 
         public async Task<PaginatedListDTO<ProfessionDTO>> GetProfessionsAsync(int pageNumber, int pageSize, string? searchTerm = null)
         {
-            var (professions, totalCount) = await _unitOfWork.Professions.GetPaginatedAsync(
+            var (professions, totalCount) = await _unitOfWork.Professions.GetPaginatedWithIncludeAsync<object>(
                  pageNumber,
                  pageSize,
                  p => p.Name.Contains(searchTerm ?? string.Empty)

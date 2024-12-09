@@ -18,6 +18,11 @@ namespace VacationPlannerPro.Data.Interfaces.Repositories
 
         Task DeleteAllAsync();
 
-        Task<(IEnumerable<T> data, int totalCount)> GetPaginatedAsync(int pageNumber, int pageSize, Expression<Func<T, bool>>? predicate = null, Expression<Func<T, object>>? orderBy = null);
+        Task<(IEnumerable<T> data, int totalCount)> GetPaginatedWithIncludeAsync<TProperty>(
+            int pageNumber,
+            int pageSize,
+            Expression<Func<T, bool>>? predicate = null,
+            Expression<Func<T, object>>? orderBy = null,
+            Expression<Func<T, TProperty>>? includeProperty = null);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using VacationPlannerPro.Business.DTOs.LeaderDTOs;
+using VacationPlannerPro.Business.DTOs;
 using VacationPlannerPro.Business.DTOs.WorkerDTOs;
 using VacationPlannerPro.Business.Interfaces;
 using VacationPlannerPro.Data.Entities;
@@ -53,6 +55,27 @@ namespace VacationPlannerPro.Business.Services
                 throw new KeyNotFoundException("Worker not found.");
 
             await _unitOfWork.Workers.DeleteAsync(worker);
+        }
+
+        public async Task<PaginatedListDTO<WorkerDTO>> GetWorkersAsync(int pageNumber, int pageSize, string? searchTerm = null)
+        {
+            var (workers, totalCount) = await _unitOfWork.Workers.GetPaginatedWithIncludeAsync(
+                 pageNumber,
+                 pageSize,
+                 l => string.IsNullOrEmpty(searchTerm) || l.FullName.Contains(searchTerm),
+                 null,
+                 l => l.Profession
+             );
+
+            var workerDtos = _mapper.Map<List<WorkerDTO>>(workers);
+
+            return new PaginatedListDTO<WorkerDTO>
+            {
+                Items = workerDtos,
+                TotalCount = totalCount,
+                CurrentPage = pageNumber,
+                PageSize = pageSize
+            };
         }
     }
 }
