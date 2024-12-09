@@ -1,4 +1,5 @@
-﻿using VacationPlannerPro.Business.DTOs.LeaderDTOs;
+﻿using VacationPlannerPro.Business.DTOs;
+using VacationPlannerPro.Business.DTOs.LeaderDTOs;
 using Task = System.Threading.Tasks.Task;
 
 namespace VacationPlannerPro.Business.Interfaces
@@ -14,5 +15,7 @@ namespace VacationPlannerPro.Business.Interfaces
         Task UpdateAsync(UpdateLeaderDTO leader);
 
         Task DeleteAsync(Guid id);
+
+        Task<PaginatedListDTO<LeaderDTO>> GetLeadersAsync(int pageNumber, int pageSize, string? searchTerm = null);
     }
 }

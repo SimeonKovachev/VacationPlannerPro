@@ -59,5 +59,26 @@ namespace VacationPlannerPro.Data.Repositories
             _dbSet.RemoveRange(_dbSet);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<(IEnumerable<T> data, int totalCount)> GetPaginatedAsync(int pageNumber, int pageSize, Expression<Func<T, bool>>? predicate = null, Expression<Func<T, object>>? orderBy = null)
+        {
+            var query = _dbSet.AsQueryable();
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            if (orderBy != null)
+            {
+                query = query.OrderBy(orderBy);
+            }
+
+            var totalCount = await query.CountAsync();
+
+            var data = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            return (data, totalCount);
+        }
     }
 }

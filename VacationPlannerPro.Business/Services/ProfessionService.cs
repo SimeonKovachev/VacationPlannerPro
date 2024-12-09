@@ -55,5 +55,24 @@ namespace VacationPlannerPro.Business.Services
 
             await _unitOfWork.Professions.DeleteAsync(profession);
         }
+
+        public async Task<PaginatedListDTO<ProfessionDTO>> GetProfessionsAsync(int pageNumber, int pageSize, string? searchTerm = null)
+        {
+            var (professions, totalCount) = await _unitOfWork.Professions.GetPaginatedAsync(
+                 pageNumber,
+                 pageSize,
+                 p => p.Name.Contains(searchTerm ?? string.Empty)
+             );
+
+            var professionDtos = _mapper.Map<List<ProfessionDTO>>(professions);
+
+            return new PaginatedListDTO<ProfessionDTO>
+            {
+                Items = professionDtos,
+                TotalCount = totalCount,
+                CurrentPage = pageNumber,
+                PageSize = pageSize
+            };
+        }
     }
 }
