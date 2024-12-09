@@ -19,5 +19,12 @@ namespace VacationPlannerPro.Web.Helpers
                                    .GetCustomAttribute<DisplayAttribute>()?.Name ?? e.ToString()
                        });
         }
+
+        public static string GetEnumDisplayName(Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var attribute = field.GetCustomAttribute<DisplayAttribute>();
+            return attribute != null ? attribute.Name : value.ToString();
+        }
     }
 }

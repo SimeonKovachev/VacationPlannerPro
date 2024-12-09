@@ -1,4 +1,5 @@
-﻿using VacationPlannerPro.Business.DTOs.VacationDTOs;
+﻿using VacationPlannerPro.Business.DTOs;
+using VacationPlannerPro.Business.DTOs.VacationDTOs;
 
 namespace VacationPlannerPro.Business.Interfaces
 {
@@ -13,5 +14,7 @@ namespace VacationPlannerPro.Business.Interfaces
         Task UpdateAsync(UpdateVacationDTO updateVacationDto);
 
         Task DeleteAsync(Guid id);
+
+        Task<PaginatedListDTO<VacationDTO>> GetVacationsAsync(int pageNumber, int pageSize, string? searchTerm = null);
     }
 }

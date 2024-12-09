@@ -24,5 +24,8 @@ namespace VacationPlannerPro.Data.Interfaces.Repositories
             Expression<Func<T, bool>>? predicate = null,
             Expression<Func<T, object>>? orderBy = null,
             Expression<Func<T, TProperty>>? includeProperty = null);
+
+        Task<T?> GetEntityWithNavigationPropertyByIdAsync<T, TNavigation>(Guid id, Expression<Func<T, TNavigation>> navigationProperty)
+            where T : class;
     }
 }

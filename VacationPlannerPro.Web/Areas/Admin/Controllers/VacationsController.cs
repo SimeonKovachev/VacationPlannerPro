@@ -14,10 +14,11 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
             _vacationService = vacationService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 10, string? searchTerm = null)
         {
-            var vacations = await _vacationService.GetAllAsync();
-            return View(vacations);
+            var paginatedVacations = await _vacationService.GetVacationsAsync(pageNumber, pageSize, searchTerm);
+            ViewBag.SearchTerm = searchTerm;
+            return View(paginatedVacations);
         }
 
         public IActionResult Create()

@@ -90,5 +90,13 @@ namespace VacationPlannerPro.Data.Repositories
 
             return (data, totalCount);
         }
+
+        public async Task<T?> GetEntityWithNavigationPropertyByIdAsync<T, TNavigation>(Guid id, Expression<Func<T, TNavigation>> navigationProperty)
+            where T : class
+        {
+            return await _context.Set<T>()
+                .Include(navigationProperty)
+                .FirstOrDefaultAsync(e => EF.Property<Guid>(e, "Id") == id);
+        }
     }
 }
