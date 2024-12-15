@@ -1,0 +1,111 @@
+﻿/* Font Stylings */
+.admin-panel h1,
+.admin-panel h2,
+.admin-panel h3,
+.admin-panel .card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.admin-panel body,
+.admin-panel p,
+.admin-panel table,
+.admin-panel .form-control,
+.admin-panel .form-label,
+.admin-panel a{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.admin-panel button,
+.admin-panel .btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.admin-panel .card-header {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.admin-panel .navbar {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+/* Other */
+.hover-effect:hover {
+    opacity: 0.7;
+    color: black;
+}
+
+/*Dashboard Styling*/
+.hover-effect:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(90deg, #ffc107, #e0a800);
+}
+
+.bg-gradient-success {
+    background: linear-gradient(90deg, #28a745, #1e7e34);
+}
+
+.bg-gradient-danger {
+    background: linear-gradient(90deg, #dc3545, #bd2130);
+}
+
+.bg-gradient-info {
+    background: linear-gradient(90deg, #17a2b8, #117a8b);
+}
+
+.btn-outline-light {
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+    .btn-outline-light:hover {
+        background-color: white;
+        color: black;
+        border-color: white;
+        transform: translateY(-2px);
+    }
+
+.hover-effect:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+
+.card-footer {
+    transition: background-color 0.3s ease-in-out;
+}
+
+    .card-footer:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+@media (max-width: 576px) {
+    .card-body h5 {
+        font-size: 1.2rem;
+    }
+
+    .card-body i {
+        font-size: 2rem;
+    }
+
+    .card-footer a {
+        font-size: 0.85rem;
+    }
+}

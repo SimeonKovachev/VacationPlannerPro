@@ -8,9 +8,9 @@
 
 <div class="row justify-content-center">
     <div class="col-lg-6">
-        <div class="card shadow-sm border-0 rounded-lg mt-3">
-            <div class="card-header">
-                <h3 class="text-center font-weight-light my-4">Create Worker</h3>
+        <div class="card shadow border-0 rounded-lg mt-3">
+            <div class="card-header bg-primary text-white">
+                <h3 class="text-center text-uppercase font-weight-light my-4">Create Worker</h3>
             </div>
             <div class="card-body">
                 @using (Html.BeginForm("Create", "Workers", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
@@ -41,7 +41,7 @@
                         <a class="btn btn-outline-primary" href="@Url.Action("Index", "Workers", new { area = "Admin" })">
                             <i class="fa-solid fa-chevron-left"></i> Back to List
                         </a>
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <button type="submit" class="btn btn-primary">Create</button>
                     </div>
                 }
             </div>

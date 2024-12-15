@@ -8,7 +8,7 @@
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <div class="card shadow border-0 rounded-lg mt-3">
-            <div class="card-header">
+            <div class="card-header bg-primary text-white">
                 <h3 class="text-center  text-uppercase font-weight-light my-4">Edit Team</h3>
             </div>
             <div class="card-body">
@@ -62,62 +62,28 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            const assignedWorkerIds = @Html.Raw(Json.Serialize(Model.WorkerIds));
+            // Populate Project Dropdown
+            populateDropdown(
+                '@Url.Action("GetAllProjects", "Projects", new { area = "Admin" })',
+                'ProjectDropdown',
+                'Select a Project',
+                '@Model?.ProjectId'
+            );
 
-            $.ajax({
-                url: '@Url.Action("GetAllProjects", "Projects", new { area = "Admin" })',
-                type: 'GET',
-                success: function (data) {
-                    let dropdown = $('#ProjectDropdown');
-                    dropdown.empty();
-                    dropdown.append('<option value="" disabled>Select a Project</option>');
-                    data.forEach(function (project) {
-                        dropdown.append(`<option value="${project.id}">${project.name}</option>`);
-                    });
+            // Populate Leader Dropdown
+            populateDropdown(
+                '@Url.Action("GetAllLeaders", "Leaders", new { area = "Admin" })',
+                'LeaderDropdown',
+                'Select a Team Leader',
+                '@Model?.LeaderId'
+            );
 
-                    dropdown.val('@Model.ProjectId');
-                },
-                error: function (error) {
-                    console.error("Error fetching projects:", error);
-                }
-            });
-
-            $.ajax({
-                url: '@Url.Action("GetAllLeaders", "Leaders", new { area = "Admin" })',
-                type: 'GET',
-                success: function (data) {
-                    let dropdown = $('#LeaderDropdown');
-                    dropdown.empty();
-                    dropdown.append('<option value="" disabled>Select a Team Leader</option>');
-                    data.forEach(function (leader) {
-                        dropdown.append(`<option value="${leader.id}">${leader.fullName}</option>`);
-                    });
-
-                    // Pre-select the current leader
-                    dropdown.val('@Model.LeaderId');
-                },
-                error: function (error) {
-                    console.error("Error fetching leaders:", error);
-                }
-            });
-
-            // Load Workers for dropdown
-            $.ajax({
-                url: '@Url.Action("GetAllWorkers", "Workers", new { area = "Admin" })',
-                type: 'GET',
-                success: function (data) {
-                    let dropdown = $('#WorkersDropdown');
-                    dropdown.empty();
-                    data.forEach(function (worker) {
-                        dropdown.append(`<option value="${worker.id}">${worker.fullName}</option>`);
-                    });
-
-                    dropdown.val(assignedWorkerIds);
-                },
-                error: function (error) {
-                    console.error("Error fetching workers:", error);
-                }
-            });
+            // Populate Workers Multi-Select Dropdown
+            populateMultiSelectDropdown(
+                '@Url.Action("GetAllWorkers", "Workers", new { area = "Admin" })',
+                'WorkersDropdown',
+                @Html.Raw(Json.Serialize(Model.WorkerIds ?? new List<Guid>()))
+            );
         });
     </script>
 }
