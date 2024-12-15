@@ -1,0 +1,123 @@
+﻿@model VacationPlannerPro.Business.DTOs.TeamDTOs.UpdateTeamDTO
+
+@{
+    ViewBag.Title = "Edit Team";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card shadow border-0 rounded-lg mt-3">
+            <div class="card-header">
+                <h3 class="text-center  text-uppercase font-weight-light my-4">Edit Team</h3>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Edit", "Teams", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ProjectDropdown" class="form-label">Project</label>
+                        <select id="ProjectDropdown" name="ProjectId" class="form-select">
+                            <option value="" disabled>Select a Project</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="LeaderDropdown" class="form-label">Team Leader</label>
+                        <select id="LeaderDropdown" name="LeaderId" class="form-select">
+                            <option value="" disabled>Select a Team Leader</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.LeaderId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="WorkersDropdown" class="form-label">Assign Workers</label>
+                        <select id="WorkersDropdown" name="WorkerIds" class="form-select" multiple>
+                            <option value="" disabled>Select Workers</option>
+                        </select>
+                        <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple workers.</small>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a class="btn btn-outline-primary" href="@Url.Action("Index", "Teams", new { area = "Admin" })">
+                            <i class="fa-solid fa-chevron-left"></i> Back to List
+                        </a>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const assignedWorkerIds = @Html.Raw(Json.Serialize(Model.WorkerIds));
+
+            $.ajax({
+                url: '@Url.Action("GetAllProjects", "Projects", new { area = "Admin" })',
+                type: 'GET',
+                success: function (data) {
+                    let dropdown = $('#ProjectDropdown');
+                    dropdown.empty();
+                    dropdown.append('<option value="" disabled>Select a Project</option>');
+                    data.forEach(function (project) {
+                        dropdown.append(`<option value="${project.id}">${project.name}</option>`);
+                    });
+
+                    dropdown.val('@Model.ProjectId');
+                },
+                error: function (error) {
+                    console.error("Error fetching projects:", error);
+                }
+            });
+
+            $.ajax({
+                url: '@Url.Action("GetAllLeaders", "Leaders", new { area = "Admin" })',
+                type: 'GET',
+                success: function (data) {
+                    let dropdown = $('#LeaderDropdown');
+                    dropdown.empty();
+                    dropdown.append('<option value="" disabled>Select a Team Leader</option>');
+                    data.forEach(function (leader) {
+                        dropdown.append(`<option value="${leader.id}">${leader.fullName}</option>`);
+                    });
+
+                    // Pre-select the current leader
+                    dropdown.val('@Model.LeaderId');
+                },
+                error: function (error) {
+                    console.error("Error fetching leaders:", error);
+                }
+            });
+
+            // Load Workers for dropdown
+            $.ajax({
+                url: '@Url.Action("GetAllWorkers", "Workers", new { area = "Admin" })',
+                type: 'GET',
+                success: function (data) {
+                    let dropdown = $('#WorkersDropdown');
+                    dropdown.empty();
+                    data.forEach(function (worker) {
+                        dropdown.append(`<option value="${worker.id}">${worker.fullName}</option>`);
+                    });
+
+                    dropdown.val(assignedWorkerIds);
+                },
+                error: function (error) {
+                    console.error("Error fetching workers:", error);
+                }
+            });
+        });
+    </script>
+}

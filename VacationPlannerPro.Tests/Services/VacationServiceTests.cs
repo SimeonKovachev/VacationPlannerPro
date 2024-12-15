@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
 using VacationPlannerPro.Business.DTOs.VacationDTOs;
@@ -7,7 +6,6 @@ using VacationPlannerPro.Business.Services;
 using VacationPlannerPro.Data.Entities;
 using VacationPlannerPro.Data.Interfaces;
 using Xunit;
-using Task = System.Threading.Tasks.Task;
 
 namespace VacationPlannerPro.Tests.Services
 {

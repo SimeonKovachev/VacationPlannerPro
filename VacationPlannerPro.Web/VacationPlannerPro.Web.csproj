@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -23,8 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\ViewModels\" />
-    <Folder Include="Areas\Admin\Views\Tasks\" />
-    <Folder Include="Areas\Admin\Views\Teams\" />
   </ItemGroup>
 
 </Project>

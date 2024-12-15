@@ -1,0 +1,89 @@
+﻿@using VacationPlannerPro.Business.DTOs.TeamDTOs
+@model CreateTeamDTO
+
+@{
+    ViewBag.Title = "Create Team";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card shadow border-0 rounded-lg mt-3">
+            <div class="card-header">
+                <h3 class="text-center text-uppercase font-weight-light my-4">Create Team</h3>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Create", "Teams", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.ProjectId, htmlAttributes: new { @class = "form-label" })
+                        <select id="ProjectDropdown" name="ProjectId" class="form-select">
+                            <option value="" disabled selected>Select a Project</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.LeaderId, htmlAttributes: new { @class = "form-label" })
+                        <select id="LeaderDropdown" name="LeaderId" class="form-select">
+                            <option value="" disabled selected>Select a Leader</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.LeaderId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="WorkersDropdown" class="form-label">Assign Workers</label>
+                        <select id="WorkersDropdown" name="WorkerIds" class="form-select" multiple>
+                            <option value="" disabled>Select Workers</option>
+                        </select>
+                        <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple workers.</small>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a class="btn btn-outline-primary" href="@Url.Action("Index", "Teams", new { area = "Admin" })">
+                            <i class="fa-solid fa-chevron-left"></i> Back to List
+                        </a>
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Populate Project Dropdown
+            populateDropdown(
+                '@Url.Action("GetAllProjects", "Projects", new { area = "Admin" })',
+                'ProjectDropdown',
+                'Select a Project',
+                '@Model?.ProjectId'
+            );
+
+            // Populate Leader Dropdown
+            populateDropdown(
+                '@Url.Action("GetAllLeaders", "Leaders", new { area = "Admin" })',
+                'LeaderDropdown',
+                'Select a Leader',
+                '@Model?.LeaderId'
+            );
+
+            // Populate Workers Multi-Select Dropdown
+            populateMultiSelectDropdown(
+                '@Url.Action("GetAllWorkers", "Workers", new { area = "Admin" })',
+                'WorkersDropdown',
+                @Html.Raw(Json.Serialize(Model?.WorkerIds ?? new List<Guid>()))
+            );
+        });
+    </script>
+}

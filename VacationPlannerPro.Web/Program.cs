@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using VacationPlannerPro.Data;
 using VacationPlannerPro.Business.Config;
 using VacationPlannerPro.Data.Seeders;
+using VacationPlannerPro.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
@@ -54,6 +55,7 @@ app.MapControllerRoute(
 
 app.UseExceptionHandler("/Error/Handle");
 app.UseStatusCodePagesWithReExecute("/Error/StatusCode", "?code={0}");
+app.UseGlobalErrorHandlerMiddleware();
 
 app.MapRazorPages();
 

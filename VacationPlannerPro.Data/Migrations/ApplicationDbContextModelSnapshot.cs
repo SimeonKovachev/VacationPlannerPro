@@ -224,21 +224,6 @@ namespace VacationPlannerPro.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TeamWorker", b =>
-                {
-                    b.Property<Guid>("TeamsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("WorkersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("TeamsId", "WorkersId");
-
-                    b.HasIndex("WorkersId");
-
-                    b.ToTable("TeamWorker");
-                });
-
             modelBuilder.Entity("VacationPlannerPro.Data.Entities.Leader", b =>
                 {
                     b.Property<Guid>("Id")
@@ -306,35 +291,6 @@ namespace VacationPlannerPro.Data.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("VacationPlannerPro.Data.Entities.Task", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<Guid>("ProjectId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("Tasks");
-                });
-
             modelBuilder.Entity("VacationPlannerPro.Data.Entities.Team", b =>
                 {
                     b.Property<Guid>("Id")
@@ -362,6 +318,21 @@ namespace VacationPlannerPro.Data.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("VacationPlannerPro.Data.Entities.TeamWorker", b =>
+                {
+                    b.Property<Guid>("TeamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("WorkerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("TeamId", "WorkerId");
+
+                    b.HasIndex("WorkerId");
+
+                    b.ToTable("TeamWorkers");
                 });
 
             modelBuilder.Entity("VacationPlannerPro.Data.Entities.Vacation", b =>
@@ -464,21 +435,6 @@ namespace VacationPlannerPro.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TeamWorker", b =>
-                {
-                    b.HasOne("VacationPlannerPro.Data.Entities.Team", null)
-                        .WithMany()
-                        .HasForeignKey("TeamsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VacationPlannerPro.Data.Entities.Worker", null)
-                        .WithMany()
-                        .HasForeignKey("WorkersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("VacationPlannerPro.Data.Entities.Leader", b =>
                 {
                     b.HasOne("VacationPlannerPro.Data.Entities.Profession", "Profession")
@@ -488,17 +444,6 @@ namespace VacationPlannerPro.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Profession");
-                });
-
-            modelBuilder.Entity("VacationPlannerPro.Data.Entities.Task", b =>
-                {
-                    b.HasOne("VacationPlannerPro.Data.Entities.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("VacationPlannerPro.Data.Entities.Team", b =>
@@ -518,6 +463,25 @@ namespace VacationPlannerPro.Data.Migrations
                     b.Navigation("Leader");
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("VacationPlannerPro.Data.Entities.TeamWorker", b =>
+                {
+                    b.HasOne("VacationPlannerPro.Data.Entities.Team", "Team")
+                        .WithMany("TeamWorkers")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VacationPlannerPro.Data.Entities.Worker", "Worker")
+                        .WithMany("TeamWorkers")
+                        .HasForeignKey("WorkerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
+
+                    b.Navigation("Worker");
                 });
 
             modelBuilder.Entity("VacationPlannerPro.Data.Entities.Vacation", b =>
@@ -552,8 +516,15 @@ namespace VacationPlannerPro.Data.Migrations
                     b.Navigation("Teams");
                 });
 
+            modelBuilder.Entity("VacationPlannerPro.Data.Entities.Team", b =>
+                {
+                    b.Navigation("TeamWorkers");
+                });
+
             modelBuilder.Entity("VacationPlannerPro.Data.Entities.Worker", b =>
                 {
+                    b.Navigation("TeamWorkers");
+
                     b.Navigation("Vacations");
                 });
 #pragma warning restore 612, 618

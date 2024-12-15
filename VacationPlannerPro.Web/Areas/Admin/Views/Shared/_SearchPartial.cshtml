@@ -1,0 +1,23 @@
+﻿@using VacationPlannerPro.Business.DTOs
+
+<form method="get" action="@Url.Action("Index", ViewData["Controller"]?.ToString(), new { area = "Admin" })" class="mb-4">
+    <div class="input-group">
+        <input type="text"
+               class="form-control"
+               name="searchTerm"
+               value="@ViewBag.SearchTerm"
+               placeholder="Search"
+               id="searchInput">
+        <button class="btn btn-outline-secondary" type="submit">
+            <i class="fa-solid fa-search"></i> Search
+        </button>
+        @if (!string.IsNullOrEmpty(ViewBag.SearchTerm))
+        {
+            <button type="button"
+                    class="btn btn-outline-secondary"
+                    onclick="clearSearch()">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        }
+    </div>
+</form>

@@ -1,0 +1,70 @@
+﻿@using VacationPlannerPro.Business.DTOs.TeamDTOs
+@model TeamWithWorkersDTO
+
+@{
+    ViewBag.Title = "Team Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-center">
+    <div class="card mt-4 shadow border-0 rounded-lg">
+        <div class="card-header">
+            <h3 class="text-center  text-uppercase font-weight-light my-4">Team Details: @Model.Name</h3>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <p class="fw-bold mb-1">Project</p>
+                    <p class="text-muted">@Model.ProjectName</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="fw-bold mb-1">Leader</p>
+                    <p class="text-muted">@Model.LeaderName</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <p class="fw-bold mb-1">Number of Workers</p>
+                    <p class="text-muted">@Model.NumberOfWorkers</p>
+                </div>
+            </div>
+
+            <h5 class="mt-4">
+                <i class="fa-solid fa-briefcase me-2"></i> Assigned Workers
+            </h5>
+            @if (Model.Workers != null && Model.Workers.Any())
+            {
+                <table class="table table-hover table-bordered mt-3">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var worker in Model.Workers)
+                        {
+                            <tr>
+                                <td>@worker.FullName</td>
+                                <td>@worker.Age</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info mt-3">
+                    <i class="fa-solid fa-circle-info me-2"></i> No workers are currently assigned to this team.
+                </div>
+            }
+
+            <div class="d-flex justify-content-between mt-4">
+                <a href="@Url.Action("Index", "Teams", new { area = "Admin" })" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Teams List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

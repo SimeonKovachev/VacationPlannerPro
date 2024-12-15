@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VacationPlannerPro.Business.DTOs.LeaderDTOs;
 using VacationPlannerPro.Business.Interfaces;
+using VacationPlannerPro.Business.Services;
 using VacationPlannerPro.Data.Entities;
 
 namespace VacationPlannerPro.Web.Areas.Admin.Controllers
@@ -85,6 +86,13 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
         {
             await _leaderService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllLeaders()
+        {
+            var professions = await _leaderService.GetAllAsync();
+            return Json(professions);
         }
     }
 }

@@ -6,7 +6,6 @@ using VacationPlannerPro.Business.Services;
 using VacationPlannerPro.Data.Entities;
 using VacationPlannerPro.Data.Interfaces;
 using Xunit;
-using Task = System.Threading.Tasks.Task;
 
 namespace VacationPlannerPro.Tests.Services
 {

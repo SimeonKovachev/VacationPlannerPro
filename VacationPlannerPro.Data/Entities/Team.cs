@@ -19,6 +19,7 @@ namespace VacationPlannerPro.Data.Entities
 
         public virtual Project Project { get; set; }
         public virtual Leader Leader { get; set; }
-        public virtual ICollection<Worker> Workers { get; set; } = new HashSet<Worker>();
+
+        public virtual ICollection<TeamWorker> TeamWorkers { get; set; } = new HashSet<TeamWorker>();
     }
 }

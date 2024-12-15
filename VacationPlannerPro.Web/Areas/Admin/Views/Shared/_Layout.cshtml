@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - Admin Panel</title>
 
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
     <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
@@ -95,22 +96,10 @@
     </div>
 
     <!-- Scripts -->
-    <script>
-        // Sidebar toggle functionality
-        document.getElementById("sidebarToggle").addEventListener("click", function () {
-            document.getElementById("wrapper").classList.toggle("toggled");
-        });
-
-        function clearSearch() {
-            const url = new URL(window.location.href);
-            url.searchParams.delete('searchTerm');
-            window.location.assign(url.toString());
-        }
-    </script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @* <script src="~/js/admin.js" asp-append-version="true"></script> *@
+    <script src="~/js/admin.js" asp-append-version="true"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

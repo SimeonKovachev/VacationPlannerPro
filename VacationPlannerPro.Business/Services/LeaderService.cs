@@ -4,7 +4,6 @@ using VacationPlannerPro.Business.DTOs.LeaderDTOs;
 using VacationPlannerPro.Business.Interfaces;
 using VacationPlannerPro.Data.Entities;
 using VacationPlannerPro.Data.Interfaces;
-using Task = System.Threading.Tasks.Task;
 
 namespace VacationPlannerPro.Business.Services
 {
@@ -21,13 +20,38 @@ namespace VacationPlannerPro.Business.Services
 
         public async Task<IEnumerable<LeaderDTO>> GetAllAsync()
         {
-            var leaders = await _unitOfWork.Leaders.GetLeadersWithProfessionsAsync();
+            var leaders = await _unitOfWork.Leaders.GetAllAsync();
             return _mapper.Map<IEnumerable<LeaderDTO>>(leaders);
+        }
+
+        public async Task<PaginatedListDTO<LeaderDTO>> GetLeadersAsync(int pageNumber, int pageSize, string? searchTerm = null)
+        {
+            var (leaders, totalCount) = await _unitOfWork.Leaders.GetPaginatedWithIncludeAsync(
+                 pageNumber,
+                 pageSize,
+                 l => string.IsNullOrEmpty(searchTerm) || l.FullName.Contains(searchTerm),
+                 null,
+                 l => l.Profession
+             );
+
+            var leaderDtos = _mapper.Map<List<LeaderDTO>>(leaders);
+
+            return new PaginatedListDTO<LeaderDTO>
+            {
+                Items = leaderDtos,
+                TotalCount = totalCount,
+                CurrentPage = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<LeaderDTO?> GetByIdAsync(Guid id)
         {
-            var leader = await _unitOfWork.Leaders.GetLeaderWithProfessionByIdAsync(id);
+            var leader = await _unitOfWork.Leaders.GetEntityWithNavigationPropertyByIdAsync<Leader, Profession>(
+                id,
+                leader => leader.Profession
+            );
+
             return leader == null ? null : _mapper.Map<LeaderDTO>(leader);
         }
 
@@ -54,27 +78,6 @@ namespace VacationPlannerPro.Business.Services
                 throw new KeyNotFoundException("Leader not found.");
 
             await _unitOfWork.Leaders.DeleteAsync(leader);
-        }
-
-        public async Task<PaginatedListDTO<LeaderDTO>> GetLeadersAsync(int pageNumber, int pageSize, string? searchTerm = null)
-        {
-            var (leaders, totalCount) = await _unitOfWork.Leaders.GetPaginatedWithIncludeAsync(
-                 pageNumber,
-                 pageSize,
-                 l => string.IsNullOrEmpty(searchTerm) || l.FullName.Contains(searchTerm),
-                 null,
-                 l => l.Profession
-             );
-
-            var leaderDtos = _mapper.Map<List<LeaderDTO>>(leaders);
-
-            return new PaginatedListDTO<LeaderDTO>
-            {
-                Items = leaderDtos,
-                TotalCount = totalCount,
-                CurrentPage = pageNumber,
-                PageSize = pageSize
-            };
         }
     }
 }

@@ -54,6 +54,10 @@ footer {
     border-top: 1px solid #ddd;
 }
 
+#WorkersDropdown option {
+    padding: 10px;
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
     #sidebar-wrapper {

@@ -3,7 +3,6 @@ using VacationPlannerPro.Business.DTOs.ProjectDTOs;
 using VacationPlannerPro.Business.Interfaces;
 using VacationPlannerPro.Data.Entities;
 using VacationPlannerPro.Data.Interfaces;
-using Task = System.Threading.Tasks.Task;
 
 namespace VacationPlannerPro.Business.Services
 {

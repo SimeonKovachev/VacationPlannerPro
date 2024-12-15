@@ -12,18 +12,16 @@ namespace VacationPlannerPro.Data.Repositories
         {
             _context = context;
             Projects = new GenericRepository<Project>(_context);
-            Leaders = new LeaderRepository(_context);
-            Tasks = new GenericRepository<Entities.Task>(_context);
-            Teams = new GenericRepository<Team>(_context);
+            Leaders = new GenericRepository<Leader>(_context);
+            Teams = new TeamRepository(_context);
             Vacations = new GenericRepository<Vacation>(_context);
             Workers = new WorkerRepository(_context);
             Professions = new GenericRepository<Profession>(_context);
         }
 
         public IGenericRepository<Project> Projects { get; }
-        public ILeaderRepository Leaders { get; }
-        public IGenericRepository<Entities.Task> Tasks { get; }
-        public IGenericRepository<Team> Teams { get; }
+        public IGenericRepository<Leader> Leaders { get; }
+        public ITeamRepository Teams { get; }
         public IGenericRepository<Vacation> Vacations { get; }
         public IWorkerRepository Workers { get; }
         public IGenericRepository<Profession> Professions { get; }

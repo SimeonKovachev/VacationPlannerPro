@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VacationPlannerPro.Data.Entities;
-using Task = System.Threading.Tasks.Task;
 
 namespace VacationPlannerPro.Data.Seeders
 {

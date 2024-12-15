@@ -20,7 +20,7 @@ namespace VacationPlannerPro.Data.Entities
         public virtual Profession Profession { get; set; }
 
         // Navigation Properties
-        public virtual ICollection<Team> Teams { get; set; } = new HashSet<Team>();
+        public virtual ICollection<TeamWorker> TeamWorkers { get; set; } = new HashSet<TeamWorker>();
         public virtual ICollection<Vacation> Vacations { get; set; } = new HashSet<Vacation>();
     }
 }

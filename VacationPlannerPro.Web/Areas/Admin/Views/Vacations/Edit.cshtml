@@ -61,21 +61,13 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $.ajax({
-                url: '@Url.Action("GetAllWorkers", "Workers", new { area = "Admin" })',
-                type: 'GET',
-                success: function (data) {
-                    let dropdown = $('#WorkerDropdown');
-                    dropdown.empty();
-                    dropdown.append('<option value="" disabled>Select a Worker</option>');
-                    data.forEach(worker => {
-                        dropdown.append(`<option value="${worker.id}" ${(worker.id === '@Model.WorkerId') ? 'selected' : ''}>${worker.fullName}</option>`);
-                    });
-                },
-                error: function () {
-                    console.error("Error fetching workers.");
-                }
-            });
+            const workerId = '@Model.WorkerId';
+            populateDropdown(
+                '@Url.Action("GetAllWorkers", "Workers", new { area = "Admin" })',
+                'WorkerDropdown',
+                'Select a Worker',
+                workerId
+            );
         });
     </script>
 }

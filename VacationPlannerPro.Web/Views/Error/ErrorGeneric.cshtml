@@ -1,8 +1,10 @@
 ﻿@{
+    ViewBag.Title = "Error";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1 class="text-danger text-center">Oops! Something went wrong.</h1>
-<p class="text-center">Please contact support or try again later.</p>
-<div class="text-center">
-    <a href="/" class="btn btn-primary">Go to Homepage</a>
+
+<div class="text-center mt-5">
+    <h1 class="display-4 text-warning">@ViewData["StatusCode"] - Unexpected Error</h1>
+    <p class="lead">We couldn't process your request.</p>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary mt-3">Return to Home</a>
 </div>

@@ -2,6 +2,7 @@
 using VacationPlannerPro.Business.DTOs;
 using VacationPlannerPro.Business.DTOs.LeaderDTOs;
 using VacationPlannerPro.Business.DTOs.ProjectDTOs;
+using VacationPlannerPro.Business.DTOs.TeamDTOs;
 using VacationPlannerPro.Business.DTOs.VacationDTOs;
 using VacationPlannerPro.Business.DTOs.WorkerDTOs;
 using VacationPlannerPro.Data.Entities;
@@ -30,6 +31,19 @@ namespace VacationPlannerPro.Business.Mapping
                .ForMember(dest => dest.ProfessionName, opt => opt.MapFrom(src => src.Profession.Name));
             CreateMap<CreateWorkerDTO, Worker>();
             CreateMap<UpdateWorkerDTO, Worker>();
+
+            CreateMap<Team, TeamDTO>()
+                .ForMember(dest => dest.ProjectName, opt => opt.MapFrom(src => src.Project.Name))
+                .ForMember(dest => dest.LeaderName, opt => opt.MapFrom(src => src.Leader.FullName))
+                .ForMember(dest => dest.NumberOfWorkers, opt => opt.MapFrom(src => src.TeamWorkers.Count));
+            CreateMap<CreateTeamDTO, Team>();
+            CreateMap<UpdateTeamDTO, Team>();
+
+            CreateMap<Team, TeamWithWorkersDTO>()
+                .ForMember(dest => dest.ProjectName, opt => opt.MapFrom(src => src.Project.Name))
+                .ForMember(dest => dest.LeaderName, opt => opt.MapFrom(src => src.Leader.FullName))
+                .ForMember(dest => dest.Workers, opt => opt.MapFrom(src => src.TeamWorkers.Select(tw => tw.Worker)))
+                .ForMember(dest => dest.NumberOfWorkers, opt => opt.MapFrom(src => src.TeamWorkers.Count));
 
             CreateMap<Profession, ProfessionDTO>().ReverseMap();
         }

@@ -19,11 +19,12 @@ namespace VacationPlannerPro.Business.Config
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IVacationService, VacationService>();
             services.AddScoped<IWorkerService, WorkerService>();
+            services.AddScoped<ITeamService, TeamService>();
 
             //Repositories
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IWorkerRepository, WorkerRepository>();
-            services.AddScoped<ILeaderRepository, LeaderRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
 
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));

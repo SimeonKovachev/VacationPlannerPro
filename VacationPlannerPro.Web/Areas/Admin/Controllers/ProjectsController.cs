@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VacationPlannerPro.Business.DTOs.ProjectDTOs;
 using VacationPlannerPro.Business.Interfaces;
+using VacationPlannerPro.Business.Services;
 
 namespace VacationPlannerPro.Web.Areas.Admin.Controllers
 {
@@ -79,6 +80,13 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
         {
             await _projectService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllProjects()
+        {
+            var professions = await _projectService.GetAllAsync();
+            return Json(professions);
         }
     }
 }

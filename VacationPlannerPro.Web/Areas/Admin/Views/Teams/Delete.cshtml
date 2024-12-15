@@ -1,0 +1,56 @@
+﻿@using VacationPlannerPro.Business.DTOs.TeamDTOs
+@model TeamDTO
+
+@{
+    ViewBag.Title = "Delete Team";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow border-0 rounded-lg mt-3">
+            <div class="card-header">
+                <h3 class="text-center text-uppercase font-weight-light my-4">Delete Team</h3>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Delete", "Teams", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="alert alert-danger">
+                        <h5>Are you sure you want to delete this team?</h5>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <strong>Team Name:</strong>
+                            <p>@Model.Name</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <strong>Project Name:</strong>
+                            <p>@Model.ProjectName</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <strong>Leader Name:</strong>
+                            <p>@Model.LeaderName</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <strong>Number of Workers:</strong>
+                            <p>@Model.NumberOfWorkers</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="@Url.Action("Index", "Teams", new { area = "Admin" })" class="btn btn-outline-primary">
+                            <i class="fa-solid fa-chevron-left"></i> Back to List
+                        </a>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa-solid fa-trash-can"></i> Delete
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

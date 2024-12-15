@@ -6,9 +6,8 @@ namespace VacationPlannerPro.Data.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IGenericRepository<Project> Projects { get; }
-        ILeaderRepository Leaders { get; }
-        IGenericRepository<Entities.Task> Tasks { get; }
-        IGenericRepository<Team> Teams { get; }
+        IGenericRepository<Leader> Leaders { get; }
+        ITeamRepository Teams { get; }
         IGenericRepository<Vacation> Vacations { get; }
         IWorkerRepository Workers { get; }
         IGenericRepository<Profession> Professions { get; }

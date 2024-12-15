@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VacationPlannerPro.Data.Entities;
-using Task = VacationPlannerPro.Data.Entities.Task;
 
 namespace VacationPlannerPro.Data
 {
@@ -12,8 +11,8 @@ namespace VacationPlannerPro.Data
         public DbSet<Vacation> Vacations { get; set; }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<Leader> Leaders { get; set; }
-        public DbSet<Task> Tasks { get; set; }
         public DbSet<Profession> Professions { get; set; }
+        public DbSet<TeamWorker> TeamWorkers { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -45,10 +44,19 @@ namespace VacationPlannerPro.Data
                 .HasForeignKey(v => v.WorkerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Worker -> Team (Many-to-Many)
-            modelBuilder.Entity<Team>()
-                .HasMany(t => t.Workers)
-                .WithMany(w => w.Teams);
+            // Team -> Worker (Many-to-Many)
+            modelBuilder.Entity<TeamWorker>()
+                .HasKey(tw => new { tw.TeamId, tw.WorkerId });
+
+            modelBuilder.Entity<TeamWorker>()
+                .HasOne(tw => tw.Team)
+                .WithMany(t => t.TeamWorkers)
+                .HasForeignKey(tw => tw.TeamId);
+
+            modelBuilder.Entity<TeamWorker>()
+                .HasOne(tw => tw.Worker)
+                .WithMany(w => w.TeamWorkers)
+                .HasForeignKey(tw => tw.WorkerId);
         }
     }
 }
