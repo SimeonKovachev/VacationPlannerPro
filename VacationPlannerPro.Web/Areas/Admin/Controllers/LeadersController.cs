@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VacationPlannerPro.Business.DTOs.LeaderDTOs;
 using VacationPlannerPro.Business.Interfaces;
 using VacationPlannerPro.Business.Services;
@@ -7,6 +8,7 @@ using VacationPlannerPro.Data.Entities;
 namespace VacationPlannerPro.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class LeadersController : Controller
     {
         private readonly ILeaderService _leaderService;

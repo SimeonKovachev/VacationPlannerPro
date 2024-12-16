@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VacationPlannerPro.Business.DTOs;
 using VacationPlannerPro.Business.Interfaces;
 
 namespace VacationPlannerPro.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class ProfessionsController : Controller
     {
         private readonly IProfessionService _professionService;
