@@ -1,8 +1,203 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Vacation Management System";
 }
+<!-- Hero Section -->
+<section id="home" class="home-section text-white mt-5 d-flex align-items-center min-vh-100">
+    <div class="overlay"></div>
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="display-4 fw-bold">Simplify Your Workforce Management</h1>
+                <p class="lead">
+                    Manage projects, vacations, teams, and more efficiently with our all-in-one Vacation Management System.
+                </p>
+                <a href="#features" class="btn btn-light btn-lg rounded-pill fw-bold mt-3">Explore Features</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<!-- Features Section -->
+<section id="features" class="py-10 bg-light">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5 text-uppercase display-5 text-primary">Our Key Features</h2>
+        <div class="row g-4">
+            <!-- Projects -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-gradient-primary-light text-white shadow-lg hover-effect h-100 py-4">
+                    <div class="card-body text-center">
+                        <i class="fas fa-folder fa-4x mb-3"></i>
+                        <h5 class="fw-bold fs-4">Projects</h5>
+                        <p class="fs-6">Manage and track your projects seamlessly.</p>
+                    </div>
+                    <div class="card-footer text-center border-0">
+                        <a href="#" class="btn btn-light btn-lg rounded-pill px-4 shadow">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Teams -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-gradient-primary-dark text-white shadow-lg hover-effect h-100 py-4">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-4x mb-3"></i>
+                        <h5 class="fw-bold fs-4">Teams</h5>
+                        <p class="fs-6">Build and manage your teams effortlessly.</p>
+                    </div>
+                    <div class="card-footer text-center border-0">
+                        <a href="#" class="btn btn-light btn-lg rounded-pill px-4 shadow">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Workers -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-gradient-primary-light text-white shadow-lg hover-effect h-100 py-4">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-cog fa-4x mb-3"></i>
+                        <h5 class="fw-bold fs-4">Workers</h5>
+                        <p class="fs-6">Track worker profiles and professions.</p>
+                    </div>
+                    <div class="card-footer text-center border-0">
+                        <a href="#" class="btn btn-light btn-lg rounded-pill px-4 shadow">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-10 bg-dark text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5 text-uppercase display-5 text-light">Our Services</h2>
+        <div class="row g-4">
+            <!-- Vacation Planning -->
+            <div class="col-lg-6">
+                <div class="card bg-gradient-secondary-dark text-white shadow-lg hover-effect h-100 py-5">
+                    <div class="card-body text-center">
+                        <i class="fas fa-plane fa-4x mb-4"></i>
+                        <h5 class="fw-bold fs-4">Vacation Planning</h5>
+                        <p class="fs-6 px-3">Schedule and monitor employee vacations effortlessly with automated notifications.</p>
+                    </div>
+                    <div class="card-footer text-center border-0">
+                        <a href="#" class="btn btn-light btn-lg rounded-pill px-4 shadow">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Leader Assignments -->
+            <div class="col-lg-6">
+                <div class="card bg-gradient-blueteal-light text-white shadow-lg hover-effect h-100 py-5">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-tie fa-4x mb-4"></i>
+                        <h5 class="fw-bold fs-4">Leader Assignments</h5>
+                        <p class="fs-6 px-3">Assign leaders to projects and teams to ensure smooth management.</p>
+                    </div>
+                    <div class="card-footer text-center border-0">
+                        <a href="#" class="btn btn-light btn-lg rounded-pill px-4 shadow">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-5 position-relative bg-dark text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold text-uppercase mb-5">What Our Clients Say</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active text-center">
+                            <div class="p-4 shadow-lg rounded">
+                                <p class="lead fst-italic">"This system has revolutionized the way we manage our teams and projects!"</p>
+                                <h5 class="fw-bold mt-3">John Doe</h5>
+                                <small class="text-uppercase">CEO</small>
+                            </div>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <div class="p-4 shadow-lg rounded">
+                                <p class="lead fst-italic">"A seamless tool that makes vacation planning stress-free for HR teams."</p>
+                                <h5 class="fw-bold mt-3">Sarah Smith</h5>
+                                <small class="text-uppercase">HR Manager</small>
+                            </div>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <div class="p-4 shadow-lg rounded">
+                                <p class="lead fst-italic">"The Vacation Management System saved us countless hours of manual work and improved our team's efficiency!"</p>
+                                <h5 class="fw-bold mt-3">Alice Brown</h5>
+                                <small class="text-uppercase">Operations Manager</small>
+                            </div>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <div class="p-4 shadow-lg rounded">
+                                <p class="lead fst-italic">"Exceptional user experience and features. It’s the best tool we’ve used for workforce management."</p>
+                                <h5 class="fw-bold mt-3">Mark Johnson</h5>
+                                <small class="text-uppercase">Team Lead</small>
+                            </div>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <div class="p-4 shadow-lg rounded">
+                                <p class="lead fst-italic">"From planning vacations to managing projects, this system does it all seamlessly. Highly recommended!"</p>
+                                <h5 class="fw-bold mt-3">Emily Davis</h5>
+                                <small class="text-uppercase">Project Manager</small>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Carousel Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Contact Section -->
+<section id="contact" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="fw-bold text-uppercase text-center mb-5">Get in Touch</h2>
+        <div class="row justify-content-center align-items-center">
+            <!-- Contact Information -->
+            <div class="col-lg-5 text-center text-lg-start mb-4 mb-lg-0">
+                <h4 class="fw-bold mb-3">Contact Information</h4>
+                <p class="mb-3"><i class="fas fa-envelope me-2 text-primary"></i> <span class="fw-bold">Email:</span> support@vacationpro.com</p>
+                <p class="mb-3"><i class="fas fa-phone me-2 text-primary"></i> <span class="fw-bold">Phone:</span> +1 728-365-413</p>
+                <p class="mb-4"><i class="fas fa-map-marker-alt me-2 text-primary"></i> <span class="fw-bold">Address:</span> 123 Vacation St., NY</p>
+                <a href="mailto:support@vacationpro.com" class="btn btn-gradient rounded-pill px-5 fw-bold mt-3">Email Us</a>
+            </div>
+            <!-- Contact Form -->
+            <div class="col-lg-6">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-4">
+                        <h4 class="fw-bold mb-4 text-center">Send Us a Message</h4>
+                        <form action="#" method="post">
+                            <div class="mb-4">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control shadow-sm" id="name" placeholder="Enter your name">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control shadow-sm" id="email" placeholder="Enter your email">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Your Message</label>
+                                <textarea class="form-control shadow-sm" id="message" rows="5" placeholder="Write your message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gradient w-100 rounded-pill fw-bold">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
