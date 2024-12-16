@@ -12,6 +12,10 @@ namespace VacationPlannerPro.Business.DTOs.TeamDTOs
 
         public string LeaderName { get; set; }
 
+        public Guid ProjectId { get; set; }
+
+        public Guid LeaderId { get; set; }
+
         public List<WorkerDTO> Workers { get; set; } = new List<WorkerDTO>();
 
         public int NumberOfWorkers => Workers?.Count ?? 0;

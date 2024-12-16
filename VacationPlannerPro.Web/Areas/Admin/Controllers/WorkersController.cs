@@ -16,9 +16,9 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
             _workerService = workerService;
         }
 
-        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 10, string? searchTerm = null)
+        public async Task<IActionResult> Index(string searchTerm = "", int page = 1, int pageSize = 5)
         {
-            var pagedResult = await _workerService.GetWorkersAsync(pageNumber, pageSize, searchTerm);
+            var pagedResult = await _workerService.GetWorkersAsync(page, pageSize, searchTerm);
             ViewBag.SearchTerm = searchTerm;
             return View(pagedResult);
         }
@@ -91,8 +91,14 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllWorkers()
         {
-            var professions = await _workerService.GetAllAsync();
-            return Json(professions);
+            var workers = await _workerService.GetAllAsync();
+            var result = workers.Select(w => new
+            {
+                id = w.Id,
+                name = w.FullName
+            });
+
+            return Json(result);
         }
     }
 }

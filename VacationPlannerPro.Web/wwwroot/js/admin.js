@@ -39,26 +39,26 @@ function populateDropdown(url, dropdownId, defaultOptionText, preSelectedValue =
 }
 
 /**
- * Populates a multi-select dropdown with data fetched from the server.
+ * Populates a multi-select dropdown with data fetched from the server and sets pre-selected values.
  * @param {string} url - The endpoint URL to fetch data.
  * @param {string} dropdownId - The ID of the multi-select dropdown to populate.
- * @param {array} preSelectedValues - Array of pre-selected values, if any.
+ * @param {array} preSelectedValues - Array of pre-selected values (GUIDs).
  */
 function populateMultiSelectDropdown(url, dropdownId, preSelectedValues = []) {
     $.ajax({
         url: url,
         type: 'GET',
+        dataType: 'json',
         success: function (data) {
             let dropdown = $(`#${dropdownId}`);
             dropdown.empty();
 
             data.forEach(function (item) {
-                dropdown.append(`<option value="${item.id}">${item.name || item.fullName}</option>`);
+                const isSelected = preSelectedValues.includes(item.id);
+                dropdown.append(`<option value="${item.id}" ${isSelected ? 'selected' : ''}>${item.name || item.fullName}</option>`);
             });
 
-            if (preSelectedValues.length > 0) {
-                dropdown.val(preSelectedValues);
-            }
+            dropdown.trigger('change');
         },
         error: function (error) {
             console.error(`Error fetching data for ${dropdownId}:`, error);

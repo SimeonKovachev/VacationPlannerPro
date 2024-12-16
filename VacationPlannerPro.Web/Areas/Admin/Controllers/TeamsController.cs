@@ -16,7 +16,7 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
             _teamService = teamService;
         }
 
-        public async Task<IActionResult> Index(string searchTerm = "", int page = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string searchTerm = "", int page = 1, int pageSize = 5)
         {
             var teams = await _teamService.GetTeamsAsync(page, pageSize, searchTerm);
             ViewBag.SearchTerm = searchTerm;
@@ -48,7 +48,7 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Edit(Guid id)
         {
-            var team = await _teamService.GetByIdAsync(id);
+            var team = await _teamService.GetTeamWithWorkersByIdAsync(id);
             if (team == null) return NotFound();
 
             var updateTeamDto = new UpdateTeamDTO
@@ -57,7 +57,7 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
                 Name = team.Name,
                 ProjectId = team.ProjectId,
                 LeaderId = team.LeaderId,
-                WorkerIds = team.Workers.Select(w => w.Id).ToList(),
+                WorkerIds = team.Workers.Select(w => w.Id).ToList()
             };
 
             return View(updateTeamDto);

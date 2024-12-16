@@ -16,31 +16,46 @@
         <!-- Wrapper for sidebar and content -->
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
-            <nav id="sidebar-wrapper" class="bg-white border-end">
-                <div class="sidebar-heading border-bottom bg-light text-center py-3">
-                    <a class="fs-5 text-decoration-none text-reset" href="@Url.Action("Index", "Dashboard", new { area = "Admin" })">Vacation Dashboard</a>
+            <nav id="sidebar-wrapper" class="bg-light border-end shadow-sm">
+                <div class="sidebar-heading text-center py-4 border-bottom bg-primary text-white">
+                    <a class="fs-5 text-decoration-none text-reset fw-bold" href="@Url.Action("Index", "Dashboard", new { area = "Admin" })">
+                        <i class="fa-solid fa-chart-line me-2"></i> Vacation Dashboard
+                    </a>
                 </div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Projects", new { area = "Admin" })">
-                        <i class="fa-solid fa-diagram-project"></i> Projects
+                    <a class="list-group-item list-group-item-action p-3 d-flex align-items-center gap-2 text-primary sidebar-link"
+                       href="@Url.Action("Index", "Projects", new { area = "Admin" })">
+                        <i class="fas fa-folder fa-lg"></i>
+                        <span>Projects</span>
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Vacations", new { area = "Admin" })">
-                        <i class="fa-solid fa-calendar-days"></i> Vacations
+                    <a class="list-group-item list-group-item-action p-3 d-flex align-items-center gap-2 text-primary sidebar-link"
+                       href="@Url.Action("Index", "Vacations", new { area = "Admin" })">
+                        <i class="fas fa-plane-departure fa-lg"></i>
+                        <span>Vacations</span>
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Teams", new { area = "Admin" })">
-                        <i class="fa-solid fa-people-group"></i> Teams
+                    <a class="list-group-item list-group-item-action p-3 d-flex align-items-center gap-2 text-primary sidebar-link"
+                       href="@Url.Action("Index", "Teams", new { area = "Admin" })">
+                        <i class="fa-solid fa-people-group fa-lg"></i>
+                        <span>Teams</span>
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Leaders", new { area = "Admin" })">
-                        <i class="fa-solid fa-user-tie"></i> Leaders
+                    <a class="list-group-item list-group-item-action p-3 d-flex align-items-center gap-2 text-primary sidebar-link"
+                       href="@Url.Action("Index", "Leaders", new { area = "Admin" })">
+                        <i class="fa-solid fa-user-tie fa-lg"></i>
+                        <span>Leaders</span>
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Workers", new { area = "Admin" })">
-                        <i class="fa-solid fa-people-carry-box"></i> Workers
+                    <a class="list-group-item list-group-item-action p-3 d-flex align-items-center gap-2 text-primary sidebar-link"
+                       href="@Url.Action("Index", "Workers", new { area = "Admin" })">
+                        <i class="fas fa-user-cog fa-lg"></i>
+                        <span>Workers</span>
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("Index", "Professions", new { area = "Admin" })">
-                        <i class="fa-solid fa-briefcase"></i> Professions
+                    <a class="list-group-item list-group-item-action p-3 d-flex align-items-center gap-2 text-primary sidebar-link"
+                       href="@Url.Action("Index", "Professions", new { area = "Admin" })">
+                        <i class="fa-solid fa-briefcase fa-lg"></i>
+                        <span>Professions</span>
                     </a>
                 </div>
             </nav>
+
 
             <!-- Page Content Wrapper -->
             <div id="page-content-wrapper">

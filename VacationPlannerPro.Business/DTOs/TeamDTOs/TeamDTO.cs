@@ -13,14 +13,8 @@ namespace VacationPlannerPro.Business.DTOs.TeamDTOs
         [StringLength(50, ErrorMessage = "Team Name cannot exceed 50 characters.")]
         public string Name { get; set; }
 
-        [Required]
-        public Guid ProjectId { get; set; }
-
         [DisplayName("Project Name")]
         public string ProjectName { get; set; } 
-
-        [Required]
-        public Guid LeaderId { get; set; }
 
         [DisplayName("Leader Name")]
         public string LeaderName { get; set; }

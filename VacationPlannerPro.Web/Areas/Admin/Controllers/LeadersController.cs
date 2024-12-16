@@ -18,9 +18,9 @@ namespace VacationPlannerPro.Web.Areas.Admin.Controllers
             _leaderService = leaderService;
         }
 
-        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 10, string? searchTerm = null)
+        public async Task<IActionResult> Index(string searchTerm = "", int page = 1, int pageSize = 5)
         {
-            var pagedResult = await _leaderService.GetLeadersAsync(pageNumber, pageSize, searchTerm);
+            var pagedResult = await _leaderService.GetLeadersAsync(page, pageSize, searchTerm);
             ViewBag.SearchTerm = searchTerm;
             return View(pagedResult);
         }
