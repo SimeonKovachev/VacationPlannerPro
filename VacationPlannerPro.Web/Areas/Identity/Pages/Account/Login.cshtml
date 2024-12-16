@@ -4,40 +4,38 @@
     ViewData["Title"] = "Log in";
 }
 
-<div class="container py-5">
+<div class="container-fluid login-page py-5">
     <div class="row justify-content-center align-items-center min-vh-100">
-        <div class="col-lg-6 d-none d-lg-block">
-            <div class="text-center">
-                <i class="fas fa-sign-in-alt fa-8x text-success mb-4"></i>
+        <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center z-5">
+            <div class="text-center text-light px-5">
+                <i class="fas fa-user-circle fa-8x mb-4"></i>
                 <h2 class="fw-bold">Welcome Back!</h2>
-                <p class="text-muted">Sign in to access your dashboard and manage your tasks efficiently.</p>
+                <p class="fs-5">Sign in to access your dashboard and manage your tasks efficiently.</p>
             </div>
         </div>
 
+        <!-- Login Form Section -->
         <div class="col-lg-5 col-md-8">
             <div class="card shadow-lg rounded-lg">
-                <div class="card-header bg-gradient-success text-white text-center py-4">
+                <div class="card-header bg-gradient-primary text-white text-center py-4">
                     <h3 class="fw-bold mb-0">Log In</h3>
                 </div>
                 <div class="card-body p-4">
                     <form id="account" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
 
-                        <!-- Email Field -->
                         <div class="form-floating mb-3">
                             <input asp-for="Input.Email" class="form-control" placeholder="Email" autocomplete="username" />
                             <label asp-for="Input.Email">Email</label>
                             <span asp-validation-for="Input.Email" class="text-danger"></span>
                         </div>
 
-                        <!-- Password Field -->
                         <div class="form-floating mb-3">
                             <input asp-for="Input.Password" class="form-control" placeholder="Password" autocomplete="current-password" />
                             <label asp-for="Input.Password">Password</label>
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
 
-                        <!-- Remember Me -->
                         <div class="form-check mb-3">
                             <input class="form-check-input" asp-for="Input.RememberMe" />
                             <label asp-for="Input.RememberMe" class="form-check-label">
@@ -45,17 +43,15 @@
                             </label>
                         </div>
 
-                        <!-- Submit Button -->
-                        <button type="submit" class="w-100 btn btn-lg btn-success shadow-sm fw-bold">
+                        <button type="submit" class="w-100 btn btn-lg btn-gradient shadow-sm fw-bold">
                             Log In <i class="fas fa-arrow-right ms-2"></i>
                         </button>
 
-                        <!-- Links -->
                         <div class="text-center mt-4">
                             <a asp-page="./ForgotPassword" class="text-decoration-none text-muted">Forgot your password?</a>
                             <p class="mt-2 text-muted">
                                 Don't have an account?
-                                <a asp-page="./Register" class="text-success fw-bold">Register here</a>
+                                <a asp-page="./Register" class="text-primary fw-bold">Register here</a>
                             </p>
                         </div>
                     </form>
