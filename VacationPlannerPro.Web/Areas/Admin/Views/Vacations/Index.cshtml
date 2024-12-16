@@ -33,26 +33,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var vacation in Model.Items)
+                        @if (Model.Items != null && Model.Items.Any())
+                        {                  
+                            @foreach (var vacation in Model.Items)
+                            {
+                                <tr>
+                                    <td>@vacation.StartDate.ToShortDateString()</td>
+                                    <td>@vacation.EndDate.ToShortDateString()</td>
+                                    <td>
+                                        @{
+                                            var vacationTypeName = VacationPlannerPro.Web.Helpers.EnumExtensions.GetEnumDisplayName(vacation.Type);
+                                            @vacationTypeName
+                                        }
+                                    </td>
+                                    <td>@vacation.WorkerName</td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", "Vacations", new { id = vacation.Id, area = "Admin" })" class="btn btn-outline-warning btn-sm">
+                                            <i class="fa-solid fa-edit"></i>
+                                        </a>
+                                        <a href="@Url.Action("Delete", "Vacations", new { id = vacation.Id, area = "Admin" })" class="btn btn-outline-danger btn-sm">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td>@vacation.StartDate.ToShortDateString()</td>
-                                <td>@vacation.EndDate.ToShortDateString()</td>
-                                <td>
-                                    @{
-                                        var vacationTypeName = VacationPlannerPro.Web.Helpers.EnumExtensions.GetEnumDisplayName(vacation.Type);
-                                        @vacationTypeName
-                                    }
-                                </td>
-                                <td>@vacation.WorkerName</td>
-                                <td>
-                                    <a href="@Url.Action("Edit", "Vacations", new { id = vacation.Id, area = "Admin" })" class="btn btn-outline-warning btn-sm">
-                                        <i class="fa-solid fa-edit"></i>
-                                    </a>
-                                    <a href="@Url.Action("Delete", "Vacations", new { id = vacation.Id, area = "Admin" })" class="btn btn-outline-danger btn-sm">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
-                                </td>
+                                <td colspan="5" class="text-center text-muted">No Vacations found.</td>
                             </tr>
                         }
                     </tbody>

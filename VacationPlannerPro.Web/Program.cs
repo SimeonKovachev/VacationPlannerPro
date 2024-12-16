@@ -37,6 +37,7 @@ using (var scope = app.Services.CreateScope())
     //Seed data
     await ProfessionSeeder.SeedProfessionsAsync(context);
     await RoleAndUserSeeder.SeedRolesAndUsersAsync(roleManager, userManager);
+    await InitialDataSeeder.SeedInitialData(context);
 }
 
 if (app.Environment.IsDevelopment())
