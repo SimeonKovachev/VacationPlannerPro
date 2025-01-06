@@ -65,34 +65,18 @@ VacationPlannerPro is a practical and user-friendly workforce management system 
 ### Setup Instructions
 
 1.  Clone the repository:
-    
-    bash
-    
-    Copy code
-    
+     
     `git clone https://github.com/your-repo/VacationPlannerPro.git cd VacationPlannerPro`
     
 2.  Add a `secrets.json` file to configure connection strings:
-    
-    bash
-    
-    Copy code
-    
+     
     `dotnet user-secrets init dotnet user-secrets set "ConnectionStrings:DbConnection" "ExampleConnection;Database=VacationPlannerPro;Trusted_Connection=True;TrustServerCertificate=True"`
     
 3.  Apply database migrations:
     
-    bash
-    
-    Copy code
-    
     `dotnet ef database update`
     
 4.  Run the application:
-    
-    bash
-    
-    Copy code
     
     `dotnet run`
     
@@ -125,13 +109,6 @@ VacationPlannerPro is a practical and user-friendly workforce management system 
 ### Areas
 
 *   **Admin Area**: Separate section for administrative management.
-
----
-
-## Source Control
-
-*   GitHub Repository: [GitHub Repo Link](https://github.com/your-repo/VacationPlannerPro)
-*   **Commit History**: Over 20 commits spread across at least 5 different days.
 
 ---
 
